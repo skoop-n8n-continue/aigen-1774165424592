@@ -5,9 +5,20 @@ body, html {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: #0b1f12; /* Fallback dark green */
+  background-color: #000; /* Fallback black while loading */
   font-family: 'Montserrat', sans-serif;
-  color: #1a3a24; /* Dark green ink */
+  color: var(--text-color-main);
+}
+
+#app-container {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  width: 100%;
+  height: 100%;
+}
+
+#app-container.loaded {
+  opacity: 1;
 }
 
 /* The Green Poker Table Felt */
@@ -18,7 +29,7 @@ body, html {
   width: 100vw;
   height: 100vh;
   /* Richer vignette/spotlight */
-  background: radial-gradient(circle at 50% 50%, #155c2f 0%, #0a2914 65%, #030e06 100%);
+  background: radial-gradient(circle at 50% 50%, var(--table-color-center) 0%, var(--table-color-mid) 65%, var(--table-color-edge) 100%);
   z-index: 1;
 }
 
@@ -95,7 +106,7 @@ body, html {
   width: 26vw;
   max-width: 40vh;
   aspect-ratio: 5 / 7;
-  background-color: #f6efe0; /* Creamy realistic paper */
+  background-color: var(--card-bg-color);
   border-radius: 1.5vh;
 
   /* Hide initially until thrown */
@@ -182,7 +193,7 @@ body, html {
   letter-spacing: 0.25em;
   margin-top: 1vh;
   margin-bottom: 1.5vh;
-  color: #2b5536;
+  color: var(--text-color-brand);
 }
 
 .image-container {
@@ -220,7 +231,7 @@ body, html {
   font-size: 2.2vh;
   line-height: 1.2;
   margin: 0 0 1vh 0;
-  color: #122918;
+  color: var(--text-color-title);
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -233,7 +244,8 @@ body, html {
   font-size: 1vh;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #5c7562;
+  color: var(--text-color-main);
+  opacity: 0.8;
   border-top: 1px solid rgba(192, 187, 169, 0.6);
   border-bottom: 1px solid rgba(192, 187, 169, 0.6);
   padding: 0.5vh 0;
@@ -255,7 +267,7 @@ body, html {
   font-family: 'Playfair Display', serif;
   font-size: 4.5vh;
   font-weight: 700;
-  color: #1a3a24;
+  color: var(--text-color-main);
   margin: 0;
   line-height: 1;
   position: relative;
@@ -270,7 +282,7 @@ body, html {
   left: -10%;
   width: 120%;
   height: 0.3vh;
-  background-color: #942b2b; /* Darker red */
+  background-color: var(--strike-color);
   transform: rotate(-10deg);
   transform-origin: center;
   animation: strike 0.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
@@ -298,7 +310,7 @@ body, html {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   font-size: 3vh;
-  color: #c94c22; /* Vibrant accent orange */
+  color: var(--text-color-accent);
 }
 
 /* The distressed Stamp */
@@ -313,14 +325,14 @@ body, html {
   mix-blend-mode: multiply;
 
   /* Stamp styling */
-  color: #c94c22;
+  color: var(--text-color-accent);
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   font-size: 3.5vh;
   line-height: 1;
   white-space: nowrap;
   padding: 1vh 2vh;
-  border: 0.5vh solid #c94c22;
+  border: 0.5vh solid var(--text-color-accent);
   border-radius: 0.8vh;
 
   /* Distressed look using an SVG mask */
@@ -329,4 +341,3 @@ body, html {
   mask-type: luminance;
   -webkit-mask-type: luminance;
 }
-

@@ -1,0 +1,116 @@
+{
+  "app_id": "aigen-1774165424592",
+  "document_version": 1,
+  "sections": {
+    "app_settings": {
+      "store_name": {
+        "type": "text",
+        "label": "Store Name",
+        "value": "Quality Roots"
+      },
+      "discount_text": {
+        "type": "text",
+        "label": "Discount Stamp Text",
+        "value": "50% OFF"
+      },
+      "table_color_center": {
+        "type": "color",
+        "label": "Table Color (Center)",
+        "value": "#155c2f"
+      },
+      "table_color_mid": {
+        "type": "color",
+        "label": "Table Color (Mid)",
+        "value": "#0a2914"
+      },
+      "table_color_edge": {
+        "type": "color",
+        "label": "Table Color (Edge)",
+        "value": "#030e06"
+      },
+      "card_bg_color": {
+        "type": "color",
+        "label": "Card Background Color",
+        "value": "#f6efe0"
+      },
+      "text_color_main": {
+        "type": "color",
+        "label": "Main Text Color",
+        "value": "#1a3a24"
+      },
+      "text_color_brand": {
+        "type": "color",
+        "label": "Brand Text Color",
+        "value": "#2b5536"
+      },
+      "text_color_title": {
+        "type": "color",
+        "label": "Title Text Color",
+        "value": "#122918"
+      },
+      "text_color_accent": {
+        "type": "color",
+        "label": "Accent Text Color",
+        "value": "#c94c22"
+      },
+      "strike_color": {
+        "type": "color",
+        "label": "Strike Line Color",
+        "value": "#942b2b"
+      }
+    },
+    "products": {
+      "type": "collection",
+      "label": "Products",
+      "item_schema": {
+        "id": { "type": "text", "label": "ID" },
+        "name": { "type": "text", "label": "Product Name" },
+        "brand": { "type": "text", "label": "Brand" },
+        "price": { "type": "number", "label": "Price", "meta": { "format": "currency" } },
+        "discounted_price": { "type": "number", "label": "Discounted Price", "meta": { "format": "currency" } },
+        "strain": { "type": "text", "label": "Strain" },
+        "category": { "type": "text", "label": "Category" },
+        "image": {
+          "type": "file",
+          "label": "Product Image",
+          "meta": {
+            "accepted_formats": ["jpg", "png", "webp"],
+            "path": "assets/products/"
+          }
+        }
+      },
+      "value": [
+        {
+          "id": "prod_a1b2c3",
+          "brand": "Savvy",
+          "name": "Savvy Blue Magic Guap Gummy 25mg 1-Pack",
+          "image": "assets/products/prod_a1b2c3_image.png",
+          "price": 7,
+          "discounted_price": 3.50,
+          "strain": "Indica",
+          "category": "Gummies"
+        },
+        {
+          "id": "prod_d4e5f6",
+          "brand": "Lost Farm",
+          "name": "Lost Farm Juicy Peach x GSC Sherbet Live Resin Gummies 10mg x 10-Pack",
+          "image": "assets/products/prod_d4e5f6_image.png",
+          "price": 30,
+          "discounted_price": 15.00,
+          "strain": "Hybrid",
+          "category": "Gummies"
+        },
+        {
+          "id": "prod_g7h8i9",
+          "brand": "URBNJ",
+          "name": "Orange Malt Flower 7g",
+          "image": "assets/products/prod_g7h8i9_image.jpg",
+          "price": 65,
+          "discounted_price": 32.50,
+          "strain": "Hybrid",
+          "category": "Whole Flower"
+        }
+      ]
+    }
+  }
+}

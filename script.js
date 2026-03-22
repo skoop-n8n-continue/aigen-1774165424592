@@ -1,36 +1,56 @@
+// Global state
+let appData = null;
+let products = [];
+let discountText = "50% OFF";
+
 /**
- * Product Data
- * Hardcoded as per instructions. All products are 50% off.
+ * Fetch and parse data.json
  */
-const products = [
-  {
-    brand: "Savvy",
-    name: "Savvy Blue Magic Guap Gummy 25mg 1-Pack",
-    image_url: "https://skoop-general.s3.us-east-1.amazonaws.com/n8n_image_gen%2Fundefined-1773196700024.png",
-    price: "7",
-    discounted_price: "3.50",
-    strain: "Indica",
-    category: "Gummies"
-  },
-  {
-    brand: "Lost Farm",
-    name: "Lost Farm Juicy Peach x GSC Sherbet Live Resin Gummies 10mg x 10-Pack",
-    image_url: "https://skoop-general.s3.us-east-1.amazonaws.com/n8n_image_gen%2Fundefined-1773196879298.png",
-    price: "30",
-    discounted_price: "15.00",
-    strain: "Hybrid",
-    category: "Gummies"
-  },
-  {
-    brand: "URBNJ",
-    name: "Orange Malt Flower 7g",
-    image_url: "https://leaflogixmedia.blob.core.windows.net/product-image/ce1aabe2-d086-4462-91ad-8f70ef4c5913.jpg",
-    price: "65",
-    discounted_price: "32.50",
-    strain: "Hybrid",
-    category: "Whole Flower"
+async function loadAppData() {
+  try {
+    const response = await fetch('data.json');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Failed to load app data:', error);
+    return null;
   }
-];
+}
+
+/**
+ * Initialize App with Data
+ */
+async function init() {
+  appData = await loadAppData();
+  if (!appData) return;
+
+  const settings = appData.sections.app_settings;
+  products = appData.sections.products.value || [];
+
+  // Update variables
+  document.documentElement.style.setProperty('--table-color-center', settings.table_color_center.value);
+  document.documentElement.style.setProperty('--table-color-mid', settings.table_color_mid.value);
+  document.documentElement.style.setProperty('--table-color-edge', settings.table_color_edge.value);
+  document.documentElement.style.setProperty('--card-bg-color', settings.card_bg_color.value);
+  document.documentElement.style.setProperty('--text-color-main', settings.text_color_main.value);
+  document.documentElement.style.setProperty('--text-color-brand', settings.text_color_brand.value);
+  document.documentElement.style.setProperty('--text-color-title', settings.text_color_title.value);
+  document.documentElement.style.setProperty('--text-color-accent', settings.text_color_accent.value);
+  document.documentElement.style.setProperty('--strike-color', settings.strike_color.value);
+
+  discountText = settings.discount_text.value;
+  document.title = settings.store_name.value + ' - ' + discountText;
+
+  // Initialize canvas effect
+  initDustCanvas();
+
+  // Reveal the app - all styles and content are now applied
+  document.getElementById('app-container').classList.add('loaded');
+
+  if (products.length > 0) {
+    runAnimationLoop();
+  }
+}
 
 /**
  * Dust Motes Particle System
@@ -103,22 +123,25 @@ function createCardElement(product) {
   // Random stamp rotation between -20deg and -5deg for a natural human-stamped look
   const stampRot = (Math.random() - 0.5) * 15 - 12;
 
+  // Handle image path correctly
+  const imgUrl = product.image || '';
+
   const html = `
     <div class="card">
       <div class="card-border"></div>
-      <div class="stamp" style="--stamp-rot: ${stampRot}deg">50% OFF</div>
+      <div class="stamp" style="--stamp-rot: ${stampRot}deg">${discountText}</div>
       <div class="card-content">
-        <div class="brand">${product.brand}</div>
+        <div class="brand">${product.brand || ''}</div>
         <div class="image-container">
-          <img class="product-image" src="${product.image_url}" alt="${product.name}">
+          <img class="product-image" src="${imgUrl}" alt="${product.name}">
         </div>
         <h2 class="title">${product.name}</h2>
-        <div class="strain">${product.category} &bull; ${product.strain}</div>
+        <div class="strain">${product.category || ''} &bull; ${product.strain || ''}</div>
 
         <div class="price-section">
-          <p class="original-price">$${product.price}</p>
+          <p class="original-price">$${Number(product.price).toFixed(2)}</p>
           <div class="new-price-container">
-            <span class="new-price">$${product.discounted_price}</span>
+            <span class="new-price">$${Number(product.discounted_price).toFixed(2)}</span>
           </div>
         </div>
       </div>
@@ -139,16 +162,18 @@ async function runAnimationLoop() {
 
   // Infinite loop for digital signage
   while (true) {
-    // Get 3 products to display at once
+    // Get up to 3 products to display at once depending on availability
+    const countToDisplay = Math.min(3, products.length);
     const currentProducts = [];
-    for(let i=0; i<3; i++) {
+
+    for(let i=0; i<countToDisplay; i++) {
         currentProducts.push(products[(currentIndex + i) % products.length]);
     }
 
     container.innerHTML = ''; // Clear previous cards
     const cardEls = [];
 
-    // Create and stage the 3 cards
+    // Create and stage the cards
     currentProducts.forEach((product) => {
       const cardEl = createCardElement(product);
       container.appendChild(cardEl);
@@ -288,12 +313,9 @@ async function runAnimationLoop() {
     });
 
     // Advance to next products
-    currentIndex = (currentIndex + 3) % products.length;
+    currentIndex = (currentIndex + countToDisplay) % products.length;
   }
 }
 
-// Initialize on load
-window.addEventListener('DOMContentLoaded', () => {
-  initDustCanvas();
-  runAnimationLoop();
-});
+// Initialize on load instead of direct execution
+window.addEventListener('DOMContentLoaded', init);
