@@ -140,6 +140,16 @@
           "discounted_price": 32.5,
           "strain": "Hybrid",
           "category": "Whole Flower"
+        },
+        {
+          "id": "prod_7qev1e",
+          "brand": "URBNJ",
+          "name": "prod2",
+          "image": "assets/products/prod_g7h8i9_image.jpg",
+          "price": 65,
+          "discounted_price": 32.5,
+          "strain": "Hybrid",
+          "category": "Whole Flower"
         }
       ]
     }
