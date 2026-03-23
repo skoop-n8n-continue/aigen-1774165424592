@@ -16,17 +16,17 @@
       "table_color_center": {
         "type": "color",
         "label": "Table Color (Center)",
-        "value": "#8cb441"
+        "value": "#155c2f"
       },
       "table_color_mid": {
         "type": "color",
         "label": "Table Color (Mid)",
-        "value": "#7a857e"
+        "value": "#0a2914"
       },
       "table_color_edge": {
         "type": "color",
         "label": "Table Color (Edge)",
-        "value": "#bf0303"
+        "value": "#030e06"
       },
       "card_bg_color": {
         "type": "color",
@@ -63,49 +63,18 @@
       "type": "collection",
       "label": "Products",
       "item_schema": {
-        "id": {
-          "type": "text",
-          "label": "ID"
-        },
-        "name": {
-          "type": "text",
-          "label": "Product Name"
-        },
-        "brand": {
-          "type": "text",
-          "label": "Brand"
-        },
-        "price": {
-          "type": "number",
-          "label": "Price",
-          "meta": {
-            "format": "currency"
-          }
-        },
-        "discounted_price": {
-          "type": "number",
-          "label": "Discounted Price",
-          "meta": {
-            "format": "currency"
-          }
-        },
-        "strain": {
-          "type": "text",
-          "label": "Strain"
-        },
-        "category": {
-          "type": "text",
-          "label": "Category"
-        },
+        "id": { "type": "text", "label": "ID" },
+        "name": { "type": "text", "label": "Product Name" },
+        "brand": { "type": "text", "label": "Brand" },
+        "price": { "type": "number", "label": "Price", "meta": { "format": "currency" } },
+        "discounted_price": { "type": "number", "label": "Discounted Price", "meta": { "format": "currency" } },
+        "strain": { "type": "text", "label": "Strain" },
+        "category": { "type": "text", "label": "Category" },
         "image": {
           "type": "file",
           "label": "Product Image",
           "meta": {
-            "accepted_formats": [
-              "jpg",
-              "png",
-              "webp"
-            ],
+            "accepted_formats": ["jpg", "png", "webp"],
             "path": "assets/products/"
           }
         }
@@ -115,9 +84,9 @@
           "id": "prod_a1b2c3",
           "brand": "Savvy",
           "name": "Savvy Blue Magic Guap Gummy 25mg 1-Pack",
-          "image": "assets/products/prod_a1b2c3_image.jpg",
+          "image": "assets/products/prod_a1b2c3_image.png",
           "price": 7,
-          "discounted_price": 3.5,
+          "discounted_price": 3.50,
           "strain": "Indica",
           "category": "Gummies"
         },
@@ -127,7 +96,7 @@
           "name": "Lost Farm Juicy Peach x GSC Sherbet Live Resin Gummies 10mg x 10-Pack",
           "image": "assets/products/prod_d4e5f6_image.png",
           "price": 30,
-          "discounted_price": 15,
+          "discounted_price": 15.00,
           "strain": "Hybrid",
           "category": "Gummies"
         },
@@ -137,17 +106,7 @@
           "name": "Orange Malt Flower 7g",
           "image": "assets/products/prod_g7h8i9_image.jpg",
           "price": 65,
-          "discounted_price": 32.5,
-          "strain": "Hybrid",
-          "category": "Whole Flower"
-        },
-        {
-          "id": "prod_7qev1e",
-          "brand": "prod2",
-          "name": "prod2",
-          "image": "assets/products/prod_g7h8i9_image.jpg",
-          "price": 65,
-          "discounted_price": 32.5,
+          "discounted_price": 32.50,
           "strain": "Hybrid",
           "category": "Whole Flower"
         }
