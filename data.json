@@ -16,12 +16,12 @@
       "table_color_center": {
         "type": "color",
         "label": "Table Color (Center)",
-        "value": "#155c2f"
+        "value": "#2f78c6"
       },
       "table_color_mid": {
         "type": "color",
         "label": "Table Color (Mid)",
-        "value": "#0a2914"
+        "value": "#7a857e"
       },
       "table_color_edge": {
         "type": "color",
