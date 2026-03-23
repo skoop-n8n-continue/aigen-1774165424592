@@ -26,7 +26,7 @@
       "table_color_edge": {
         "type": "color",
         "label": "Table Color (Edge)",
-        "value": "#030e06"
+        "value": "#bf0303"
       },
       "card_bg_color": {
         "type": "color",
