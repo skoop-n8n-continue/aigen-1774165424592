@@ -16,7 +16,7 @@
       "table_color_center": {
         "type": "color",
         "label": "Table Color (Center)",
-        "value": "#c62f2f"
+        "value": "#8cb441"
       },
       "table_color_mid": {
         "type": "color",
