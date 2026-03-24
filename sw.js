@@ -126,7 +126,9 @@ self.addEventListener('fetch', event => {
       caches.open(CACHE_NAME).then(async cache => {
         await cache.delete(normalized);
         try {
-          const fresh = await fetch(normalized);
+          // cache: 'no-store' bypasses the browser's HTTP cache so we
+          // actually hit the server, not a stale HTTP-cached S3 response
+          const fresh = await fetch(normalized, { cache: 'no-store' });
           if (fresh.ok) await cache.put(normalized, fresh.clone());
           return fresh;
         } catch (_) {
