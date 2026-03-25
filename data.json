@@ -56,7 +56,7 @@
       "strike_color": {
         "type": "color",
         "label": "Strike Line Color",
-        "value": "#942b2b"
+        "value": "#603e3e"
       }
     },
     "products": {
